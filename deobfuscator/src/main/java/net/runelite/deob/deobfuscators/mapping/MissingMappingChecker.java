@@ -81,7 +81,7 @@ public class MissingMappingChecker implements Runnable
 				continue;
 			}
 
-			if (!mapping.getMap().containsKey(namedCF))
+			if (!mapping.getMap().containsKey(namedCF) && !mapping.getMap().containsValue(targetCF))
 			{
 				mapping.map(null, namedCF, targetCF);
 				logger.info("Mapped missing class: {} to: {}", namedCF, targetCF);
