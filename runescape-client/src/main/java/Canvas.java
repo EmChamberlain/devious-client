@@ -396,7 +396,7 @@ public final class Canvas extends java.awt.Canvas {
 																continue label1505;
 															}
 
-															class101.method2633(var23.field2464);
+															WorldView.method2633(var23.field2464);
 															if (var23.field2476 == 85 && Login.Login_username.length() > 0) {
 																Login.Login_username = Login.Login_username.substring(0, Login.Login_username.length() - 1);
 															}

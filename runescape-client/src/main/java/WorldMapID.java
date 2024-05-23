@@ -69,11 +69,11 @@ public class WorldMapID {
 		var10.field1399 = var7 + Client.field543;
 		var10.field1396 = var8;
 		var10.field1395 = var9;
-		if (ModeWhere.field4623.field1349[var0][var1][var2] == null) {
-			ModeWhere.field4623.field1349[var0][var1][var2] = new NodeDeque();
+		if (ModeWhere.worldView.field1349[var0][var1][var2] == null) {
+			ModeWhere.worldView.field1349[var0][var1][var2] = new NodeDeque();
 		}
 
-		ModeWhere.field4623.field1349[var0][var1][var2].addFirst(var10);
+		ModeWhere.worldView.field1349[var0][var1][var2].addFirst(var10);
 		class349.method6551(var0, var1, var2);
 	}
 

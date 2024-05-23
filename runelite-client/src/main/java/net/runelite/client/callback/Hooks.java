@@ -511,8 +511,10 @@ public class Hooks implements Callbacks
 	}
 
 	@Override
-	public void updateNpcs()
+	public void serverTick()
 	{
+		shouldProcessGameTick = true;
+
 		if (ignoreNextNpcUpdate)
 		{
 			// After logging in an NPC update happens outside of the normal game tick, which

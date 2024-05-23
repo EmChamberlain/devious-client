@@ -158,8 +158,8 @@ public class GraphicsObject extends Renderable {
 		descriptor = "(Ldt;Ldk;I)V",
 		garbageValue = "2074227552"
 	)
-	static final void method2099(class101 var0, PendingSpawn var1) {
-		Scene var2 = var0.field1331;
+	static final void method2099(WorldView var0, PendingSpawn var1) {
+		Scene var2 = var0.scene;
 		long var3 = 0L;
 		int var5 = -1;
 		int var6 = 0;

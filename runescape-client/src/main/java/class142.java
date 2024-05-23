@@ -103,7 +103,7 @@ public enum class142 implements Enum {
 		descriptor = "(Ldt;I)V",
 		garbageValue = "-1182418693"
 	)
-	static void method3190(class101 var0) {
+	static void method3190(WorldView var0) {
 		int var1 = var0.field1346 / 8;
 		int var2 = var0.field1330 / 8;
 		boolean var3 = false;
@@ -143,8 +143,8 @@ public enum class142 implements Enum {
 			if (var3) {
 				int var5;
 				for (var4 = 0; var4 < 4; ++var4) {
-					for (var5 = 0; var5 < var0.field1340[var4].length; ++var5) {
-						Arrays.fill(var0.field1340[var4][var5], (byte)0);
+					for (var5 = 0; var5 < var0.tileSettings[var4].length; ++var5) {
+						Arrays.fill(var0.tileSettings[var4][var5], (byte)0);
 					}
 				}
 
@@ -186,7 +186,7 @@ public enum class142 implements Enum {
 							}
 
 							if (!var19) {
-								SequenceDefinition.method4373(var0.field1339, var4, var5 * 8, var18 * 8);
+								SequenceDefinition.method4373(var0.tileHeights, var4, var5 * 8, var18 * 8);
 							}
 						}
 					}
@@ -260,13 +260,13 @@ public enum class142 implements Enum {
 		int var18 = (var15 + 1 >> 1) + var1;
 		int var19 = (var16 >> 1) + var2;
 		int var20 = var2 + (var16 + 1 >> 1);
-		int[][] var21 = ModeWhere.field4623.field1339[var0];
+		int[][] var21 = ModeWhere.worldView.tileHeights[var0];
 		int var22 = var21[var18][var19] + var21[var17][var19] + var21[var17][var20] + var21[var18][var20] >> 2;
 		int var23 = (var1 << 7) + (var15 << 6);
 		int var24 = (var2 << 7) + (var16 << 6);
 		Model var25 = var14.getModel(var3, var4, var21, var23, var22, var24);
 		if (var25 != null) {
-			class162.method3417(ModeWhere.field4623, var0, var1, var2, var5, -1, 0, 0, 31, var7 + 1, var8 + 1);
+			class162.method3417(ModeWhere.worldView, var0, var1, var2, var5, -1, 0, 0, 31, var7 + 1, var8 + 1);
 			var13.field1143 = var7 + Client.cycle;
 			var13.field1144 = var8 + Client.cycle;
 			var13.field1158 = var25;

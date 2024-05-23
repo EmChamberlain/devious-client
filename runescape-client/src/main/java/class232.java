@@ -146,8 +146,8 @@ public class class232 {
 		descriptor = "(Ldt;IIIIB)V",
 		garbageValue = "-17"
 	)
-	static final void method4489(class101 var0, int var1, int var2, int var3, int var4) {
-		int[][][] var5 = var0.field1339;
+	static final void method4489(WorldView var0, int var1, int var2, int var3, int var4) {
+		int[][][] var5 = var0.tileHeights;
 		int var6 = var0.field1346 - 1;
 		int var7 = var0.field1330 - 1;
 

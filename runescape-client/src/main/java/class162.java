@@ -62,25 +62,25 @@ public class class162 extends class147 {
 		garbageValue = "-1966702872"
 	)
 	static void method3413(Player var0, int var1, int var2) {
-		if (var0.field1223 == var1 && var1 != -1) {
+		if (var0.sequence == var1 && var1 != -1) {
 			int var3 = FaceNormal.SequenceDefinition_get(var1).restartMode;
 			if (var3 == 1) {
-				var0.field1250 = 0;
-				var0.field1251 = 0;
-				var0.field1252 = var2;
+				var0.sequenceFrame = 0;
+				var0.sequenceFrameCycle = 0;
+				var0.sequenceDelay = var2;
 				var0.field1239 = 0;
 			}
 
 			if (var3 == 2) {
 				var0.field1239 = 0;
 			}
-		} else if (var1 == -1 || var0.field1223 == -1 || FaceNormal.SequenceDefinition_get(var1).field2409 >= FaceNormal.SequenceDefinition_get(var0.field1223).field2409) {
-			var0.field1223 = var1;
-			var0.field1250 = 0;
-			var0.field1251 = 0;
-			var0.field1252 = var2;
+		} else if (var1 == -1 || var0.sequence == -1 || FaceNormal.SequenceDefinition_get(var1).field2409 >= FaceNormal.SequenceDefinition_get(var0.sequence).field2409) {
+			var0.sequence = var1;
+			var0.sequenceFrame = 0;
+			var0.sequenceFrameCycle = 0;
+			var0.sequenceDelay = var2;
 			var0.field1239 = 0;
-			var0.field1226 = var0.field1274;
+			var0.field1226 = var0.pathLength;
 		}
 
 	}
@@ -90,7 +90,7 @@ public class class162 extends class147 {
 		descriptor = "(Ldt;IIIIIIIIIII)V",
 		garbageValue = "-1586816445"
 	)
-	static void method3417(class101 var0, int var1, int var2, int var3, int var4, int var5, int var6, int var7, int var8, int var9, int var10) {
+	static void method3417(WorldView var0, int var1, int var2, int var3, int var4, int var5, int var6, int var7, int var8, int var9, int var10) {
 		NodeDeque var11 = var0.field1342;
 		PendingSpawn var12 = null;
 

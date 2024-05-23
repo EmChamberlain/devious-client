@@ -36,6 +36,7 @@ import net.runelite.rs.api.RSClient;
 import net.runelite.rs.api.RSNPC;
 import net.runelite.rs.api.RSPlayer;
 import net.runelite.rs.api.RSProjectile;
+import net.runelite.rs.api.RSWorldView;
 
 @Mixin(RSProjectile.class)
 public abstract class RSProjectileMixin implements RSProjectile
@@ -125,5 +126,22 @@ public abstract class RSProjectileMixin implements RSProjectile
 		projectileMoved.setPosition(position);
 		projectileMoved.setZ(targetZ);
 		client.getCallbacks().post(projectileMoved);
+	}
+
+	@Inject
+	private RSWorldView worldView;
+
+	@Inject
+	@Override
+	public RSWorldView getWorldView()
+	{
+		return worldView;
+	}
+
+	@Inject
+	@Override
+	public void setWorldView(RSWorldView worldView)
+	{
+		this.worldView = worldView;
 	}
 }

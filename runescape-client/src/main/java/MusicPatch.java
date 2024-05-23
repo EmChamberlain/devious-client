@@ -542,7 +542,7 @@ public class MusicPatch extends Node {
 		descriptor = "(Ldt;IIIIIIIILir;B)V",
 		garbageValue = "83"
 	)
-	static final void method6441(class101 var0, int var1, int var2, int var3, int var4, int var5, int var6, int var7, int var8, CollisionMap var9) {
+	static final void method6441(WorldView var0, int var1, int var2, int var3, int var4, int var5, int var6, int var7, int var8, CollisionMap var9) {
 		ObjectComposition var10 = HitSplatDefinition.getObjectDefinition(var5);
 		int var11 = var8 >= 0 ? var8 : var10.animationId;
 		int var12;
@@ -575,12 +575,12 @@ public class MusicPatch extends Node {
 			var17 = var4 + 1;
 		}
 
-		int[][] var18 = var0.field1339[var2];
+		int[][] var18 = var0.tileHeights[var2];
 		int var19 = var18[var15][var17] + var18[var14][var16] + var18[var15][var16] + var18[var14][var17] >> 2;
 		int var20 = (var3 << 7) + (var12 << 6);
 		int var21 = (var4 << 7) + (var13 << 6);
-		Scene var22 = var0.field1331;
-		long var23 = KitDefinition.method3900(var3, var4, 2, var10.int1 == 0, var5, var0.field1335);
+		Scene var22 = var0.scene;
+		long var23 = KitDefinition.method3900(var3, var4, 2, var10.int1 == 0, var5, var0.id);
 		int var25 = (var6 << 6) + var7;
 		if (var10.int3 == 1) {
 			var25 += 256;

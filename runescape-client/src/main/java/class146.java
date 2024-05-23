@@ -96,17 +96,17 @@ public class class146 extends class147 {
 					var22 = -1;
 				}
 
-				class101 var23 = null;
-				if (var22 >= 0 && class358.scene.field1347[var22] != null) {
-					var23 = class358.scene.field1347[var22].field4947;
+				WorldView var23 = null;
+				if (var22 >= 0 && class358.topLevelWorldView.worldEntities[var22] != null) {
+					var23 = class358.topLevelWorldView.worldEntities[var22].worldView;
 				} else if (var22 == -1) {
-					var23 = class358.scene;
+					var23 = class358.topLevelWorldView;
 				}
 
 				if (var23 != null) {
-					int var24 = var23.field1348;
+					int var24 = var23.plane;
 					int var28;
-					if (var18 == 2 && var23.field1331.getObjectFlags(var24, var15, var35, var31) >= 0) {
+					if (var18 == 2 && var23.scene.getObjectFlags(var24, var15, var35, var31) >= 0) {
 						ObjectComposition var25 = HitSplatDefinition.getObjectDefinition(var20);
 						if (var25.transforms != null) {
 							var25 = var25.transform();
@@ -168,27 +168,27 @@ public class class146 extends class147 {
 
 					int var36;
 					Player var37;
-					class103 var44;
+					NPC var44;
 					int[] var45;
 					if (var18 == 1) {
-						class103 var39 = var23.field1343[var21];
+						NPC var39 = var23.NPCS[var21];
 						if (var39 == null) {
 							continue;
 						}
 
-						if (var39.field1359.size == 1 && (var39.x & 127) == 64 && (var39.y & 127) == 64) {
-							for (var36 = 0; var36 < var23.field1344; ++var36) {
-								var44 = var23.field1343[var23.field1345[var36]];
-								if (var44 != null && var39 != var44 && var44.field1359.size == 1 && var44.x == var39.x && var39.y == var44.y) {
-									class4.method16(var44, var23.field1345[var36], var15, var17, var22);
+						if (var39.npcComposition.size == 1 && (var39.x & 127) == 64 && (var39.y & 127) == 64) {
+							for (var36 = 0; var36 < var23.npcSize; ++var36) {
+								var44 = var23.NPCS[var23.npcIndexes[var36]];
+								if (var44 != null && var39 != var44 && var44.npcComposition.size == 1 && var44.x == var39.x && var39.y == var44.y) {
+									class4.method16(var44, var23.npcIndexes[var36], var15, var17, var22);
 								}
 							}
 
-							var36 = var23.field1336.field1415;
-							var45 = var23.field1336.field1416;
+							var36 = var23.playerUpdateManager.playerSize;
+							var45 = var23.playerUpdateManager.playerIndexes;
 
 							for (var28 = 0; var28 < var36; ++var28) {
-								var37 = var23.field1341[var45[var28]];
+								var37 = var23.players[var45[var28]];
 								if (var37 != null && var39.x == var37.x && var37.y == var39.y) {
 									class28.method423(var37, var45[var28], var15, var17, var22);
 								}
@@ -199,24 +199,24 @@ public class class146 extends class147 {
 					}
 
 					if (var18 == 0) {
-						Player var40 = var23.field1341[var21];
+						Player var40 = var23.players[var21];
 						if (var40 == null) {
 							continue;
 						}
 
 						if ((var40.x & 127) == 64 && (var40.y & 127) == 64) {
-							for (var36 = 0; var36 < var23.field1344; ++var36) {
-								var44 = var23.field1343[var23.field1345[var36]];
-								if (var44 != null && var44.field1359.size == 1 && var44.x == var40.x && var44.y == var40.y) {
-									class4.method16(var44, var23.field1345[var36], var15, var17, var22);
+							for (var36 = 0; var36 < var23.npcSize; ++var36) {
+								var44 = var23.NPCS[var23.npcIndexes[var36]];
+								if (var44 != null && var44.npcComposition.size == 1 && var44.x == var40.x && var44.y == var40.y) {
+									class4.method16(var44, var23.npcIndexes[var36], var15, var17, var22);
 								}
 							}
 
-							var36 = var23.field1336.field1415;
-							var45 = var23.field1336.field1416;
+							var36 = var23.playerUpdateManager.playerSize;
+							var45 = var23.playerUpdateManager.playerIndexes;
 
 							for (var28 = 0; var28 < var36; ++var28) {
-								var37 = var23.field1341[var45[var28]];
+								var37 = var23.players[var45[var28]];
 								if (var37 != null && var37 != var40 && var40.x == var37.x && var40.y == var37.y) {
 									class28.method423(var37, var45[var28], var15, var17, var22);
 								}
@@ -288,7 +288,7 @@ public class class146 extends class147 {
 		if (-1L != var4) {
 			var9 = (int)(var4 >>> 0 & 127L);
 			int var11 = WorldMapScaleHandler.method6094(var4);
-			Player var12 = class358.scene.field1341[Client.combatTargetPlayerIndex];
+			Player var12 = class358.topLevelWorldView.players[Client.combatTargetPlayerIndex];
 			class28.method423(var12, Client.combatTargetPlayerIndex, var9, var11, var6);
 		}
 

@@ -136,14 +136,14 @@ public class class28 {
 					}
 				} else {
 					for (var6 = 7; var6 >= 0; --var6) {
-						if (Client.overheadText[var6] != null) {
+						if (Client.playerMenuActions[var6] != null) {
 							short var7 = 0;
-							if (Client.overheadText[var6].equalsIgnoreCase("Attack")) {
+							if (Client.playerMenuActions[var6].equalsIgnoreCase("Attack")) {
 								if (AttackOption.AttackOption_hidden == Client.playerAttackOption) {
 									continue;
 								}
 
-								if (AttackOption.field1384 == Client.playerAttackOption || AttackOption.AttackOption_dependsOnCombatLevels == Client.playerAttackOption && var0.field1147 > class17.localPlayer.field1147) {
+								if (AttackOption.AttackOption_alwaysRightClick == Client.playerAttackOption || AttackOption.AttackOption_dependsOnCombatLevels == Client.playerAttackOption && var0.field1147 > class17.localPlayer.field1147) {
 									var7 = 2000;
 								}
 
@@ -161,8 +161,8 @@ public class class28 {
 							}
 
 							boolean var8 = false;
-							int var9 = Client.field660[var6] + var7;
-							class194.method3796(Client.overheadText[var6], HttpAuthenticationHeader.colorStartTag(16777215) + var5, var9, var1, var2, var3, -1, false, var4);
+							int var9 = Client.playerMenuOpcodes[var6] + var7;
+							class194.method3796(Client.playerMenuActions[var6], HttpAuthenticationHeader.colorStartTag(16777215) + var5, var9, var1, var2, var3, -1, false, var4);
 						}
 					}
 				}

@@ -52,7 +52,7 @@ public abstract class ClickboxMixin implements RSClient
 		}
 
 		// only need a boundingbox check?
-		if (model.isClickable())
+		if (model.useBoundingBox())
 		{
 			addHashAtMouse(hash);
 			return;
@@ -147,7 +147,7 @@ public abstract class ClickboxMixin implements RSClient
 				continue;
 			}
 
-			final int radius = model.isClickable() ? 20 : 5;
+			final int radius = model.useBoundingBox() ? 20 : 5;
 
 			int var18 = radius + viewportMouseY;
 			boolean var34;

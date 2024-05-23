@@ -250,7 +250,7 @@ public class class27 {
 		garbageValue = "-1425892999"
 	)
 	static final void method415(int var0, int var1, int var2, int var3, int var4) {
-		Scene var5 = class358.scene.field1331;
+		Scene var5 = class358.topLevelWorldView.scene;
 		long var6 = var5.getBoundaryObjectTag(var0, var1, var2);
 		int var8;
 		int var9;

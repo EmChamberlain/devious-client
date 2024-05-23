@@ -2444,7 +2444,6 @@ public interface Client extends OAuthApi, GameEngine
 
 	void menuAction(int p0, int p1, MenuAction action, int id, int itemId, String option, String target);
 
-
 	/**
 	 * Get worldview by id
 	 * @param id id, or -1 for top level worldview

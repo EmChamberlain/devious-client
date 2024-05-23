@@ -142,7 +142,7 @@ class class140 implements Callable {
 		garbageValue = "529388836"
 	)
 	static void method3146(int var0, int var1, int var2, int var3, int var4) {
-		NodeDeque var5 = ModeWhere.field4623.field1349[var0][var1][var2];
+		NodeDeque var5 = ModeWhere.worldView.field1349[var0][var1][var2];
 		if (var5 != null) {
 			for (TileItem var6 = (TileItem)var5.last(); var6 != null; var6 = (TileItem)var5.previous()) {
 				if ((var3 & 32767) == var6.id) {

@@ -529,8 +529,8 @@ public class ClientPreferences {
 	)
 	void method2536(int var1) {
 		this.field1327 = var1;
-		if (class358.scene != null) {
-			class358.scene.field1331.method4971(class459.clientPreferences.method2577());
+		if (class358.topLevelWorldView != null) {
+			class358.topLevelWorldView.scene.method4971(class459.clientPreferences.method2577());
 		}
 
 		class202.savePreferences();
@@ -573,52 +573,52 @@ public class ClientPreferences {
 		descriptor = "(Ldt;ZLuk;I)V",
 		garbageValue = "-1493100299"
 	)
-	static final void method2546(class101 var0, boolean var1, PacketBuffer var2) {
+	static final void method2546(WorldView var0, boolean var1, PacketBuffer var2) {
 		Client.field658 = 0;
-		Client.field588 = 0;
+		Client.npcCount = 0;
 		var2.importIndex();
 		int var3 = var2.readBits(8);
 		int var4;
-		if (var3 < var0.field1344) {
-			for (var4 = var3; var4 < var0.field1344; ++var4) {
-				Client.field659[++Client.field658 - 1] = var0.field1345[var4];
+		if (var3 < var0.npcSize) {
+			for (var4 = var3; var4 < var0.npcSize; ++var4) {
+				Client.field659[++Client.field658 - 1] = var0.npcIndexes[var4];
 			}
 		}
 
-		if (var3 > var0.field1344) {
+		if (var3 > var0.npcSize) {
 			throw new RuntimeException("");
 		} else {
-			var0.field1344 = 0;
+			var0.npcSize = 0;
 
 			int var7;
 			int var8;
 			int var9;
 			int var10;
 			for (var4 = 0; var4 < var3; ++var4) {
-				int var20 = var0.field1345[var4];
-				class103 var21 = var0.field1343[var20];
+				int var20 = var0.npcIndexes[var4];
+				NPC var21 = var0.NPCS[var20];
 				var7 = var2.readBits(1);
 				if (var7 == 0) {
-					var0.field1345[++var0.field1344 - 1] = var20;
-					var21.field1263 = Client.cycle;
+					var0.npcIndexes[++var0.npcSize - 1] = var20;
+					var21.npcCycle = Client.cycle;
 				} else {
 					var8 = var2.readBits(2);
 					if (var8 == 0) {
-						var0.field1345[++var0.field1344 - 1] = var20;
-						var21.field1263 = Client.cycle;
-						Client.overheadTextXs[++Client.field588 - 1] = var20;
+						var0.npcIndexes[++var0.npcSize - 1] = var20;
+						var21.npcCycle = Client.cycle;
+						Client.npcIndices[++Client.npcCount - 1] = var20;
 					} else if (var8 == 1) {
-						var0.field1345[++var0.field1344 - 1] = var20;
-						var21.field1263 = Client.cycle;
+						var0.npcIndexes[++var0.npcSize - 1] = var20;
+						var21.npcCycle = Client.cycle;
 						var9 = var2.readBits(3);
 						var21.method2657(var9, class237.field2525);
 						var10 = var2.readBits(1);
 						if (var10 == 1) {
-							Client.overheadTextXs[++Client.field588 - 1] = var20;
+							Client.npcIndices[++Client.npcCount - 1] = var20;
 						}
 					} else if (var8 == 2) {
-						var0.field1345[++var0.field1344 - 1] = var20;
-						var21.field1263 = Client.cycle;
+						var0.npcIndexes[++var0.npcSize - 1] = var20;
+						var21.npcCycle = Client.cycle;
 						if (var2.readBits(1) == 1) {
 							var9 = var2.readBits(3);
 							var21.method2657(var9, class237.field2529);
@@ -631,7 +631,7 @@ public class ClientPreferences {
 
 						var9 = var2.readBits(1);
 						if (var9 == 1) {
-							Client.overheadTextXs[++Client.field588 - 1] = var20;
+							Client.npcIndices[++Client.npcCount - 1] = var20;
 						}
 					} else if (var8 == 3) {
 						Client.field659[++Client.field658 - 1] = var20;
@@ -641,9 +641,9 @@ public class ClientPreferences {
 
 			class155.method3295(var0, var1, var2);
 
-			for (var3 = 0; var3 < Client.field588; ++var3) {
-				var4 = Client.overheadTextXs[var3];
-				class103 var5 = var0.field1343[var4];
+			for (var3 = 0; var3 < Client.npcCount; ++var3) {
+				var4 = Client.npcIndices[var3];
+				NPC var5 = var0.NPCS[var4];
 				int var6 = var2.readUnsignedByte();
 				if ((var6 & 1) != 0) {
 					var7 = var2.readUnsignedByte();
@@ -656,7 +656,7 @@ public class ClientPreferences {
 				}
 
 				if ((var6 & 8) != 0) {
-					var5.field1359 = class134.getNpcDefinition(var2.readUnsignedShortAddLE());
+					var5.npcComposition = class134.getNpcDefinition(var2.readUnsignedShortAddLE());
 					class4.method15(var5);
 					var5.method2665();
 				}
@@ -668,31 +668,31 @@ public class ClientPreferences {
 					}
 
 					var8 = var2.readUnsignedByte();
-					if (var7 == var5.field1223 && var7 != -1) {
+					if (var7 == var5.sequence && var7 != -1) {
 						var9 = FaceNormal.SequenceDefinition_get(var7).restartMode;
 						if (var9 == 1) {
-							var5.field1250 = 0;
-							var5.field1251 = 0;
-							var5.field1252 = var8;
+							var5.sequenceFrame = 0;
+							var5.sequenceFrameCycle = 0;
+							var5.sequenceDelay = var8;
 							var5.field1239 = 0;
 						}
 
 						if (var9 == 2) {
 							var5.field1239 = 0;
 						}
-					} else if (var7 == -1 || var5.field1223 == -1 || FaceNormal.SequenceDefinition_get(var7).field2409 >= FaceNormal.SequenceDefinition_get(var5.field1223).field2409) {
-						var5.field1223 = var7;
-						var5.field1250 = 0;
-						var5.field1251 = 0;
-						var5.field1252 = var8;
+					} else if (var7 == -1 || var5.sequence == -1 || FaceNormal.SequenceDefinition_get(var7).field2409 >= FaceNormal.SequenceDefinition_get(var5.sequence).field2409) {
+						var5.sequence = var7;
+						var5.sequenceFrame = 0;
+						var5.sequenceFrameCycle = 0;
+						var5.sequenceDelay = var8;
 						var5.field1239 = 0;
-						var5.field1226 = var5.field1274;
+						var5.field1226 = var5.pathLength;
 					}
 				}
 
 				if ((var6 & 2) != 0) {
-					var5.field1224 = var2.readStringCp1252NullTerminated();
-					var5.field1218 = 100;
+					var5.overheadText = var2.readStringCp1252NullTerminated();
+					var5.overheadTextCyclesRemaining = 100;
 				}
 
 				int var11;
@@ -722,8 +722,8 @@ public class ClientPreferences {
 						var16 = null;
 						if ((var7 & 4) == 4) {
 							var10 = 0;
-							if (var5.field1359.recolorTo != null) {
-								var10 = var5.field1359.recolorTo.length;
+							if (var5.npcComposition.recolorTo != null) {
+								var10 = var5.npcComposition.recolorTo.length;
 							}
 
 							var16 = new short[var10];
@@ -736,8 +736,8 @@ public class ClientPreferences {
 						var17 = null;
 						if ((var7 & 8) == 8) {
 							var11 = 0;
-							if (var5.field1359.retextureTo != null) {
-								var11 = var5.field1359.retextureTo.length;
+							if (var5.npcComposition.retextureTo != null) {
+								var11 = var5.npcComposition.retextureTo.length;
 							}
 
 							var17 = new short[var11];
@@ -752,7 +752,7 @@ public class ClientPreferences {
 							var22 = var2.readUnsignedByteSub() == 1;
 						}
 
-						var18 = (long)(++class103.field1364 - 1);
+						var18 = (long)(++NPC.field1364 - 1);
 						var5.method2668(new NpcOverrides(var18, var15, var16, var17, var22));
 					}
 				}
@@ -803,8 +803,8 @@ public class ClientPreferences {
 						var16 = null;
 						if ((var7 & 4) == 4) {
 							var10 = 0;
-							if (var5.field1359.recolorTo != null) {
-								var10 = var5.field1359.recolorTo.length;
+							if (var5.npcComposition.recolorTo != null) {
+								var10 = var5.npcComposition.recolorTo.length;
 							}
 
 							var16 = new short[var10];
@@ -817,8 +817,8 @@ public class ClientPreferences {
 						var17 = null;
 						if ((var7 & 8) == 8) {
 							var11 = 0;
-							if (var5.field1359.retextureTo != null) {
-								var11 = var5.field1359.retextureTo.length;
+							if (var5.npcComposition.retextureTo != null) {
+								var11 = var5.npcComposition.retextureTo.length;
 							}
 
 							var17 = new short[var11];
@@ -833,7 +833,7 @@ public class ClientPreferences {
 							var22 = var2.readUnsignedByte() == 1;
 						}
 
-						var18 = (long)(++class103.field1366 - 1);
+						var18 = (long)(++NPC.field1366 - 1);
 						var5.method2692(new NpcOverrides(var18, var15, var16, var17, var22));
 					}
 				}
@@ -898,31 +898,31 @@ public class ClientPreferences {
 				}
 
 				if ((var6 & 64) != 0) {
-					var5.field1219 = var2.readUnsignedIntLE();
-					var5.field1219 += var2.readUnsignedByteSub() << 16;
+					var5.targetIndex = var2.readUnsignedIntLE();
+					var5.targetIndex += var2.readUnsignedByteSub() << 16;
 					var7 = 16777215;
-					if (var7 == var5.field1219) {
-						var5.field1219 = -1;
+					if (var7 == var5.targetIndex) {
+						var5.targetIndex = -1;
 					}
 				}
 
 				if ((var6 & 262144) != 0) {
 					var7 = var2.readUnsignedShortLE();
-					var5.field1241 = (var7 & 1) != 0 ? var2.readUnsignedShort() : var5.field1359.turnLeftSequence;
-					var5.field1212 = (var7 & 2) != 0 ? var2.readUnsignedIntLE() : var5.field1359.turnRightSequence;
-					var5.field1213 = (var7 & 4) != 0 ? var2.readUnsignedShort() : var5.field1359.walkSequence;
-					var5.field1222 = (var7 & 8) != 0 ? var2.readUnsignedIntIME() : var5.field1359.walkBackSequence;
-					var5.field1205 = (var7 & 16) != 0 ? var2.readUnsignedShortAddLE() : var5.field1359.walkLeftSequence;
-					var5.field1216 = (var7 & 32) != 0 ? var2.readUnsignedIntLE() : var5.field1359.walkRightSequence;
-					var5.field1217 = (var7 & 64) != 0 ? var2.readUnsignedIntLE() : var5.field1359.field2130;
-					var5.field1215 = (var7 & 128) != 0 ? var2.readUnsignedIntLE() : var5.field1359.field2131;
-					var5.field1225 = (var7 & 256) != 0 ? var2.readUnsignedIntLE() : var5.field1359.field2161;
-					var5.field1220 = (var7 & 512) != 0 ? var2.readUnsignedIntIME() : var5.field1359.field2133;
-					var5.field1273 = (var7 & 1024) != 0 ? var2.readUnsignedShortAddLE() : var5.field1359.field2134;
-					var5.field1206 = (var7 & 2048) != 0 ? var2.readUnsignedIntLE() : var5.field1359.field2135;
-					var5.field1281 = (var7 & 4096) != 0 ? var2.readUnsignedIntLE() : var5.field1359.field2136;
-					var5.field1228 = (var7 & 8192) != 0 ? var2.readUnsignedShortAddLE() : var5.field1359.field2124;
-					var5.idleSequence = (var7 & 16384) != 0 ? var2.readUnsignedIntIME() : var5.field1359.idleSequence;
+					var5.turnLeftSequence = (var7 & 1) != 0 ? var2.readUnsignedShort() : var5.npcComposition.turnLeftSequence;
+					var5.turnRightSequence = (var7 & 2) != 0 ? var2.readUnsignedIntLE() : var5.npcComposition.turnRightSequence;
+					var5.walkSequence = (var7 & 4) != 0 ? var2.readUnsignedShort() : var5.npcComposition.walkSequence;
+					var5.walkBackSequence = (var7 & 8) != 0 ? var2.readUnsignedIntIME() : var5.npcComposition.walkBackSequence;
+					var5.walkLeftSequence = (var7 & 16) != 0 ? var2.readUnsignedShortAddLE() : var5.npcComposition.walkLeftSequence;
+					var5.walkRightSequence = (var7 & 32) != 0 ? var2.readUnsignedIntLE() : var5.npcComposition.walkRightSequence;
+					var5.runSequence = (var7 & 64) != 0 ? var2.readUnsignedIntLE() : var5.npcComposition.field2130;
+					var5.field1215 = (var7 & 128) != 0 ? var2.readUnsignedIntLE() : var5.npcComposition.field2131;
+					var5.field1225 = (var7 & 256) != 0 ? var2.readUnsignedIntLE() : var5.npcComposition.field2161;
+					var5.field1220 = (var7 & 512) != 0 ? var2.readUnsignedIntIME() : var5.npcComposition.field2133;
+					var5.field1273 = (var7 & 1024) != 0 ? var2.readUnsignedShortAddLE() : var5.npcComposition.field2134;
+					var5.field1206 = (var7 & 2048) != 0 ? var2.readUnsignedIntLE() : var5.npcComposition.field2135;
+					var5.field1281 = (var7 & 4096) != 0 ? var2.readUnsignedIntLE() : var5.npcComposition.field2136;
+					var5.field1228 = (var7 & 8192) != 0 ? var2.readUnsignedShortAddLE() : var5.npcComposition.field2124;
+					var5.idleSequence = (var7 & 16384) != 0 ? var2.readUnsignedIntIME() : var5.npcComposition.idleSequence;
 				}
 
 				if ((var6 & 16) != 0) {
@@ -950,32 +950,32 @@ public class ClientPreferences {
 					var5.field1258 = var2.readByte();
 					var5.field1257 = var2.readByteNeg();
 					var5.field1259 = var2.readByteSub();
-					var5.field1260 = var2.readUnsignedShort() + Client.cycle;
+					var5.spotAnimation = var2.readUnsignedShort() + Client.cycle;
 					var5.field1261 = var2.readUnsignedShort() + Client.cycle;
 					var5.field1262 = var2.readUnsignedIntLE();
-					var5.field1274 = 1;
+					var5.pathLength = 1;
 					var5.field1226 = 0;
-					var5.field1256 += var5.field1229[0];
-					var5.field1258 += var5.field1276[0];
-					var5.field1257 += var5.field1229[0];
-					var5.field1259 += var5.field1276[0];
+					var5.field1256 += var5.pathX[0];
+					var5.field1258 += var5.pathY[0];
+					var5.field1257 += var5.pathX[0];
+					var5.field1259 += var5.pathY[0];
 				}
 			}
 
 			for (var3 = 0; var3 < Client.field658; ++var3) {
 				var4 = Client.field659[var3];
-				if (var0.field1343[var4].field1263 != Client.cycle) {
-					var0.field1343[var4].field1359 = null;
-					var0.field1343[var4] = null;
+				if (var0.NPCS[var4].npcCycle != Client.cycle) {
+					var0.NPCS[var4].npcComposition = null;
+					var0.NPCS[var4] = null;
 				}
 			}
 
 			if (var2.offset != Client.packetWriter.serverPacketLength) {
 				throw new RuntimeException(var2.offset + "," + Client.packetWriter.serverPacketLength);
 			} else {
-				for (var3 = 0; var3 < var0.field1344; ++var3) {
-					if (var0.field1343[var0.field1345[var3]] == null) {
-						throw new RuntimeException(var3 + "," + var0.field1344);
+				for (var3 = 0; var3 < var0.npcSize; ++var3) {
+					if (var0.NPCS[var0.npcIndexes[var3]] == null) {
+						throw new RuntimeException(var3 + "," + var0.npcSize);
 					}
 				}
 

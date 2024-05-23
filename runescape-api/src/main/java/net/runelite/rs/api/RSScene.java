@@ -112,4 +112,8 @@ public interface RSScene extends Scene
 
 	@Import("drawEntity")
 	boolean drawEntity(int level, int x, int y, int z, int radius, Renderable renderable, int orientation, long var8, boolean drawFrontTilesFirst);
+
+	@Import("worldViewId")
+	@Override
+	int getWorldViewId();
 }

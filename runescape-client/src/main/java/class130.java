@@ -248,8 +248,8 @@ public class class130 {
 		descriptor = "(Ldt;IIIIIILir;B)V",
 		garbageValue = "39"
 	)
-	static final void method3051(class101 var0, int var1, int var2, int var3, int var4, int var5, int var6, CollisionMap var7) {
-		if (!Client.isLowDetail || (var0.field1340[0][var2][var3] & 2) != 0 || (var0.field1340[var1][var2][var3] & 16) == 0) {
+	static final void method3051(WorldView var0, int var1, int var2, int var3, int var4, int var5, int var6, CollisionMap var7) {
+		if (!Client.isLowDetail || (var0.tileSettings[0][var2][var3] & 2) != 0 || (var0.tileSettings[var1][var2][var3] & 16) == 0) {
 			if (var1 < Tiles.Tiles_minPlane) {
 				Tiles.Tiles_minPlane = var1;
 			}
@@ -285,11 +285,11 @@ public class class130 {
 				var14 = var3 + 1;
 			}
 
-			int[][] var15 = var0.field1339[var1];
+			int[][] var15 = var0.tileHeights[var1];
 			int var16 = var15[var12][var13] + var15[var11][var13] + var15[var11][var14] + var15[var12][var14] >> 2;
 			int var17 = (var2 << 7) + (var9 << 6);
 			int var18 = (var3 << 7) + (var10 << 6);
-			long var19 = KitDefinition.method3900(var2, var3, 2, var8.int1 == 0, var4, var0.field1335);
+			long var19 = KitDefinition.method3900(var2, var3, 2, var8.int1 == 0, var4, var0.id);
 			int var21 = (var5 << 6) + var6;
 			if (var8.int3 == 1) {
 				var21 += 256;
@@ -299,7 +299,7 @@ public class class130 {
 				SoundCache.createObjectSound(var1, var2, var3, var8, var5);
 			}
 
-			Scene var22 = var0.field1331;
+			Scene var22 = var0.scene;
 			Object var30;
 			if (var6 == 22) {
 				if (!Client.isLowDetail || var8.int1 != 0 || var8.interactType == 1 || var8.boolean2) {

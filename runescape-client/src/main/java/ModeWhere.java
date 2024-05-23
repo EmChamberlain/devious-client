@@ -79,7 +79,8 @@ public enum ModeWhere implements Enum {
 	@ObfuscatedSignature(
 		descriptor = "Ldt;"
 	)
-	static class101 field4623;
+	@Export("worldView")
+	static WorldView worldView;
 	@ObfuscatedName("ap")
 	@ObfuscatedGetter(
 		intValue = -478390221
@@ -274,18 +275,18 @@ public enum ModeWhere implements Enum {
 
 			var3 = class33.field178 >> 7;
 			var4 = class76.field931 >> 7;
-			var5 = SoundSystem.method856(class358.scene, class33.field178, class76.field931, var2);
+			var5 = SoundSystem.getTileHeight(class358.topLevelWorldView, class33.field178, class76.field931, var2);
 			int var6 = 0;
 			int var7;
 			if (var3 > 3 && var4 > 3 && var3 < 100 && var4 < 100) {
 				for (var7 = var3 - 4; var7 <= var3 + 4; ++var7) {
 					for (int var8 = var4 - 4; var8 <= var4 + 4; ++var8) {
 						int var9 = var2;
-						if (var2 < 3 && (class358.scene.field1340[1][var7][var8] & 2) == 2) {
+						if (var2 < 3 && (class358.topLevelWorldView.tileSettings[1][var7][var8] & 2) == 2) {
 							var9 = var2 + 1;
 						}
 
-						int var10 = var5 - class358.scene.field1339[var9][var7][var8];
+						int var10 = var5 - class358.topLevelWorldView.tileHeights[var9][var7][var8];
 						if (var10 > var6) {
 							var6 = var10;
 						}
@@ -302,13 +303,13 @@ public enum ModeWhere implements Enum {
 				var7 = 32768;
 			}
 
-			if (var7 > Client.hintArrowNpcIndex) {
-				Client.hintArrowNpcIndex += (var7 - Client.hintArrowNpcIndex) / 24;
-			} else if (var7 < Client.hintArrowNpcIndex) {
-				Client.hintArrowNpcIndex += (var7 - Client.hintArrowNpcIndex) / 80;
+			if (var7 > Client.field610) {
+				Client.field610 += (var7 - Client.field610) / 24;
+			} else if (var7 < Client.field610) {
+				Client.field610 += (var7 - Client.field610) / 80;
 			}
 
-			TextureProvider.field2830 = SoundSystem.method856(class358.scene, var0, var1, var2) - Client.camFollowHeight;
+			TextureProvider.field2830 = SoundSystem.getTileHeight(class358.topLevelWorldView, var0, var1, var2) - Client.camFollowHeight;
 		} else if (Client.oculusOrbState == 1) {
 			class11.method100();
 			short var11 = -1;

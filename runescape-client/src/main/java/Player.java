@@ -147,7 +147,7 @@ public final class Player extends Actor {
 	@ObfuscatedSignature(
 		descriptor = "Ldt;"
 	)
-	class101 field1134;
+	WorldView field1134;
 
 	Player() {
 		this.field1136 = -1;
@@ -169,7 +169,7 @@ public final class Player extends Actor {
 		this.field1159 = TriBool.TriBool_unknown;
 		this.field1160 = TriBool.TriBool_unknown;
 		this.field1161 = false;
-		this.field1134 = class358.scene;
+		this.field1134 = class358.topLevelWorldView;
 	}
 
 	@ObfuscatedName("ah")
@@ -182,14 +182,14 @@ public final class Player extends Actor {
 		if (this.appearance == null) {
 			return null;
 		} else {
-			SequenceDefinition var1 = super.field1223 != -1 && super.field1252 == 0 ? FaceNormal.SequenceDefinition_get(super.field1223) : null;
-			SequenceDefinition var2 = super.field1245 == -1 || this.field1153 || super.field1245 == super.idleSequence && var1 != null ? null : FaceNormal.SequenceDefinition_get(super.field1245);
-			Model var3 = this.appearance.getModel(var1, super.field1250, var2, super.movementFrame);
+			SequenceDefinition var1 = super.sequence != -1 && super.sequenceDelay == 0 ? FaceNormal.SequenceDefinition_get(super.sequence) : null;
+			SequenceDefinition var2 = super.movementSequence == -1 || this.field1153 || super.movementSequence == super.idleSequence && var1 != null ? null : FaceNormal.SequenceDefinition_get(super.movementSequence);
+			Model var3 = this.appearance.getModel(var1, super.sequenceFrame, var2, super.movementFrame);
 			if (var3 == null) {
 				return null;
 			} else {
 				var3.calculateBoundsCylinder();
-				super.field1279 = var3.height;
+				super.defaultHeight = var3.height;
 				int var4 = var3.indicesCount;
 				if (!this.field1153) {
 					var3 = this.method2451(var3);
@@ -203,25 +203,25 @@ public final class Player extends Actor {
 					if (Client.cycle >= this.field1143 && Client.cycle < this.field1144) {
 						Model var5 = this.field1158;
 						var5.offsetBy(this.field1145 * 4096 - super.x, this.field1146 - this.field1148, this.field1154 * 4096 - super.y);
-						if (super.field1282 == 512) {
+						if (super.orientation == 512) {
 							var5.rotateY90Ccw();
 							var5.rotateY90Ccw();
 							var5.rotateY90Ccw();
-						} else if (super.field1282 == 1024) {
+						} else if (super.orientation == 1024) {
 							var5.rotateY90Ccw();
 							var5.rotateY90Ccw();
-						} else if (super.field1282 == 1536) {
+						} else if (super.orientation == 1536) {
 							var5.rotateY90Ccw();
 						}
 
 						Model[] var6 = new Model[]{var3, var5};
 						var3 = new Model(var6, 2);
-						if (super.field1282 == 512) {
+						if (super.orientation == 512) {
 							var5.rotateY90Ccw();
-						} else if (super.field1282 == 1024) {
+						} else if (super.orientation == 1024) {
 							var5.rotateY90Ccw();
 							var5.rotateY90Ccw();
-						} else if (super.field1282 == 1536) {
+						} else if (super.orientation == 1536) {
 							var5.rotateY90Ccw();
 							var5.rotateY90Ccw();
 							var5.rotateY90Ccw();
@@ -315,35 +315,35 @@ public final class Player extends Actor {
 			super.idleSequence = -1;
 		}
 
-		super.field1241 = var1.readUnsignedShort();
-		if (super.field1241 == 65535) {
-			super.field1241 = -1;
+		super.turnLeftSequence = var1.readUnsignedShort();
+		if (super.turnLeftSequence == 65535) {
+			super.turnLeftSequence = -1;
 		}
 
-		super.field1212 = super.field1241;
-		super.field1213 = var1.readUnsignedShort();
-		if (super.field1213 == 65535) {
-			super.field1213 = -1;
+		super.turnRightSequence = super.turnLeftSequence;
+		super.walkSequence = var1.readUnsignedShort();
+		if (super.walkSequence == 65535) {
+			super.walkSequence = -1;
 		}
 
-		super.field1222 = var1.readUnsignedShort();
-		if (super.field1222 == 65535) {
-			super.field1222 = -1;
+		super.walkBackSequence = var1.readUnsignedShort();
+		if (super.walkBackSequence == 65535) {
+			super.walkBackSequence = -1;
 		}
 
-		super.field1205 = var1.readUnsignedShort();
-		if (super.field1205 == 65535) {
-			super.field1205 = -1;
+		super.walkLeftSequence = var1.readUnsignedShort();
+		if (super.walkLeftSequence == 65535) {
+			super.walkLeftSequence = -1;
 		}
 
-		super.field1216 = var1.readUnsignedShort();
-		if (super.field1216 == 65535) {
-			super.field1216 = -1;
+		super.walkRightSequence = var1.readUnsignedShort();
+		if (super.walkRightSequence == 65535) {
+			super.walkRightSequence = -1;
 		}
 
-		super.field1217 = var1.readUnsignedShort();
-		if (super.field1217 == 65535) {
-			super.field1217 = -1;
+		super.runSequence = var1.readUnsignedShort();
+		if (super.runSequence == 65535) {
+			super.runSequence = -1;
 		}
 
 		this.username = new Username(var1.readStringCp1252NullTerminated(), class236.loginType);
@@ -552,14 +552,14 @@ public final class Player extends Actor {
 		descriptor = "(Ldt;IILjv;B)V",
 		garbageValue = "-60"
 	)
-	final void method2370(class101 var1, int var2, int var3, class237 var4) {
-		if (super.field1223 != -1 && FaceNormal.SequenceDefinition_get(super.field1223).field2422 == 1) {
-			super.field1223 = -1;
+	final void method2370(WorldView var1, int var2, int var3, class237 var4) {
+		if (super.sequence != -1 && FaceNormal.SequenceDefinition_get(super.sequence).field2422 == 1) {
+			super.sequence = -1;
 		}
 
 		this.method2447();
 		if (var2 >= 0 && var2 < 104 && var3 >= 0 && var3 < 104) {
-			if (super.field1229[0] >= 0 && super.field1229[0] < 104 && super.field1276[0] >= 0 && super.field1276[0] < 104) {
+			if (super.pathX[0] >= 0 && super.pathX[0] < 104 && super.pathY[0] >= 0 && super.pathY[0] < 104) {
 				if (var4 == class237.field2529) {
 					class141.method3184(var1, this, var2, var3, class237.field2529);
 				}
@@ -581,14 +581,14 @@ public final class Player extends Actor {
 	)
 	@Export("resetPath")
 	void resetPath(int var1, int var2) {
-		super.field1274 = 0;
+		super.pathLength = 0;
 		super.field1226 = 0;
 		super.field1278 = 0;
-		super.field1229[0] = var1;
-		super.field1276[0] = var2;
+		super.pathX[0] = var1;
+		super.pathY[0] = var2;
 		int var3 = this.transformedSize();
-		super.x = var3 * 64 + super.field1229[0] * 128;
-		super.y = super.field1276[0] * 128 + var3 * 64;
+		super.x = var3 * 64 + super.pathX[0] * 128;
+		super.y = super.pathY[0] * 128 + var3 * 64;
 	}
 
 	@ObfuscatedName("ag")
@@ -597,19 +597,19 @@ public final class Player extends Actor {
 		garbageValue = "-1589929454"
 	)
 	final void method2372(int var1, int var2, class237 var3) {
-		if (super.field1274 < 9) {
-			++super.field1274;
+		if (super.pathLength < 9) {
+			++super.pathLength;
 		}
 
-		for (int var4 = super.field1274; var4 > 0; --var4) {
-			super.field1229[var4] = super.field1229[var4 - 1];
-			super.field1276[var4] = super.field1276[var4 - 1];
-			super.field1277[var4] = super.field1277[var4 - 1];
+		for (int var4 = super.pathLength; var4 > 0; --var4) {
+			super.pathX[var4] = super.pathX[var4 - 1];
+			super.pathY[var4] = super.pathY[var4 - 1];
+			super.pathTraversed[var4] = super.pathTraversed[var4 - 1];
 		}
 
-		super.field1229[0] = var1;
-		super.field1276[0] = var2;
-		super.field1277[0] = var3;
+		super.pathX[0] = var1;
+		super.pathY[0] = var2;
+		super.pathTraversed[0] = var3;
 	}
 
 	@ObfuscatedName("bs")

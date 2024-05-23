@@ -38,8 +38,8 @@ public class UserComparator10 extends AbstractUserComparator {
 		descriptor = "(Ldt;[BIIIIIIIIII)V",
 		garbageValue = "653933494"
 	)
-	static final void method2998(class101 var0, byte[] var1, int var2, int var3, int var4, int var5, int var6, int var7, int var8, int var9, int var10) {
-		CollisionMap[] var11 = var0.field1332;
+	static final void method2998(WorldView var0, byte[] var1, int var2, int var3, int var4, int var5, int var6, int var7, int var8, int var9, int var10) {
+		CollisionMap[] var11 = var0.collisionMaps;
 		int var13;
 		if (var11 != null) {
 			for (int var12 = 0; var12 < 8; ++var12) {

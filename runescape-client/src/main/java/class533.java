@@ -89,13 +89,13 @@ public class class533 implements Enum {
 		descriptor = "(Ldt;I)V",
 		garbageValue = "2134611847"
 	)
-	static final void method9517(class101 var0) {
+	static final void method9517(WorldView var0) {
 		int var1 = var0.field1346;
 		int var2 = var0.field1330;
-		int[][][] var3 = var0.field1339;
-		byte[][][] var4 = var0.field1340;
-		Scene var5 = var0.field1331;
-		CollisionMap[] var6 = var0.field1332;
+		int[][][] var3 = var0.tileHeights;
+		byte[][][] var4 = var0.tileSettings;
+		Scene var5 = var0.scene;
+		CollisionMap[] var6 = var0.collisionMaps;
 
 		int var7;
 		int var8;
@@ -104,9 +104,9 @@ public class class533 implements Enum {
 		for (var7 = 0; var7 < 4; ++var7) {
 			for (var8 = 0; var8 < var1; ++var8) {
 				for (var9 = 0; var9 < var2; ++var9) {
-					if ((var0.field1340[var7][var8][var9] & 1) == 1) {
+					if ((var0.tileSettings[var7][var8][var9] & 1) == 1) {
 						var10 = var7;
-						if ((var0.field1340[1][var8][var9] & 2) == 2) {
+						if ((var0.tileSettings[1][var8][var9] & 2) == 2) {
 							var10 = var7 - 1;
 						}
 

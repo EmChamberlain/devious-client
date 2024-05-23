@@ -261,7 +261,7 @@ public class KitDefinition extends DualNode {
 	static final void logOut() {
 		Client.packetWriter.close();
 		class13.clear();
-		class358.scene.clear();
+		class358.topLevelWorldView.clear();
 		Client.field552.method4379();
 		System.gc();
 		Skills.method7123(0, 0);
@@ -299,9 +299,9 @@ public class KitDefinition extends DualNode {
 			var7 = var1.readUnsignedByteSub();
 			var8 = var1.readShortLE();
 			var9 = var1.readUnsignedIntLE();
-			if (var3 >= 0 && var4 >= 0 && var3 < ModeWhere.field4623.field1346 && var4 < ModeWhere.field4623.field1330) {
+			if (var3 >= 0 && var4 >= 0 && var3 < ModeWhere.worldView.field1346 && var4 < ModeWhere.worldView.field1330) {
 				var10 = var24 + 1;
-				if (class17.localPlayer.field1229[0] >= var3 - var10 && class17.localPlayer.field1229[0] <= var3 + var10 && class17.localPlayer.field1276[0] >= var4 - var10 && class17.localPlayer.field1276[0] <= var4 + var10 && class459.clientPreferences.getAreaSoundEffectsVolume() != 0 && var8 > 0 && Client.soundEffectCount < 50) {
+				if (class17.localPlayer.pathX[0] >= var3 - var10 && class17.localPlayer.pathX[0] <= var3 + var10 && class17.localPlayer.pathY[0] >= var4 - var10 && class17.localPlayer.pathY[0] <= var4 + var10 && class459.clientPreferences.getAreaSoundEffectsVolume() != 0 && var8 > 0 && Client.soundEffectCount < 50) {
 					Client.soundEffectIds[Client.soundEffectCount] = var9;
 					Client.soundEffects[Client.soundEffectCount] = null;
 					Client.soundLocations[Client.soundEffectCount] = var24 + (var4 << 8) + (var3 << 16);
@@ -337,11 +337,11 @@ public class KitDefinition extends DualNode {
 				if (var15 == Client.localPlayerIndex) {
 					var17 = class17.localPlayer;
 				} else {
-					var17 = ModeWhere.field4623.field1341[var15];
+					var17 = ModeWhere.worldView.players[var15];
 				}
 
 				if (var17 != null) {
-					int var18 = Client.field753 == -1 ? ModeWhere.field4623.field1348 : Client.field753;
+					int var18 = Client.field753 == -1 ? ModeWhere.worldView.plane : Client.field753;
 					class142.method3197(var18, var13, var14, var8, var9, var10, var3, var6, var4, var5, var11, var2, var16, var17);
 				}
 			}
@@ -357,9 +357,9 @@ public class KitDefinition extends DualNode {
 				var8 = var6 & 3;
 				var9 = Client.field604[var7];
 				var10 = var1.readUnsignedIntIME();
-				if (var4 >= 0 && var24 >= 0 && var4 < ModeWhere.field4623.field1346 && var24 < ModeWhere.field4623.field1330) {
-					var27 = Client.field753 == -1 ? ModeWhere.field4623.field1348 : Client.field753;
-					class162.method3417(ModeWhere.field4623, var27, var4, var24, var9, var10, var7, var8, var23, 0, -1);
+				if (var4 >= 0 && var24 >= 0 && var4 < ModeWhere.worldView.field1346 && var24 < ModeWhere.worldView.field1330) {
+					var27 = Client.field753 == -1 ? ModeWhere.worldView.plane : Client.field753;
+					class162.method3417(ModeWhere.worldView, var27, var4, var24, var9, var10, var7, var8, var23, 0, -1);
 				}
 
 			} else if (class319.field3378 == var0) {
@@ -372,8 +372,8 @@ public class KitDefinition extends DualNode {
 				var8 = var6 & 3;
 				var9 = Client.field604[var7];
 				if (var4 >= 0 && var24 >= 0 && var4 < 103 && var24 < 103) {
-					var10 = Client.field753 == -1 ? ModeWhere.field4623.field1348 : Client.field753;
-					PendingSpawn var21 = class177.method3603(ModeWhere.field4623, var10, var4, var24, var9);
+					var10 = Client.field753 == -1 ? ModeWhere.worldView.plane : Client.field753;
+					PendingSpawn var21 = class177.method3603(ModeWhere.worldView, var10, var4, var24, var9);
 					if (var21 != null) {
 						ObjectComposition var22 = HitSplatDefinition.getObjectDefinition(var21.field1193);
 						if (var22.field2315) {
@@ -409,8 +409,8 @@ public class KitDefinition extends DualNode {
 				byte var29 = var1.readByte();
 				var7 = var26 + var10;
 				var15 = var29 + var27;
-				if (var10 >= 0 && var27 >= 0 && var10 < ModeWhere.field4623.field1346 && var27 < ModeWhere.field4623.field1330 && var7 >= 0 && var15 >= 0 && var7 < ModeWhere.field4623.field1346 && var15 < ModeWhere.field4623.field1330 && var3 != 65535) {
-					int var30 = Client.field753 == -1 ? ModeWhere.field4623.field1348 : Client.field753;
+				if (var10 >= 0 && var27 >= 0 && var10 < ModeWhere.worldView.field1346 && var27 < ModeWhere.worldView.field1330 && var7 >= 0 && var15 >= 0 && var7 < ModeWhere.worldView.field1346 && var15 < ModeWhere.worldView.field1330 && var3 != 65535) {
+					int var30 = Client.field753 == -1 ? ModeWhere.worldView.plane : Client.field753;
 					WorldMapEvent.method6096(var30, var10, var27, var7, var15, var4, var3, var6, var12, var14, var13, var24, var23, var8);
 				}
 
@@ -421,8 +421,8 @@ public class KitDefinition extends DualNode {
 				var24 = var1.method9715();
 				var6 = var1.readUnsignedShortAddLE();
 				var7 = var1.method9715();
-				if (var3 >= 0 && var4 >= 0 && var3 < ModeWhere.field4623.field1346 && var4 < ModeWhere.field4623.field1330) {
-					var8 = Client.field753 == -1 ? ModeWhere.field4623.field1348 : Client.field753;
+				if (var3 >= 0 && var4 >= 0 && var3 < ModeWhere.worldView.field1346 && var4 < ModeWhere.worldView.field1330) {
+					var8 = Client.field753 == -1 ? ModeWhere.worldView.plane : Client.field753;
 					class136.method3128(var8, var3, var4, var6, var7, var24);
 				}
 
@@ -433,9 +433,9 @@ public class KitDefinition extends DualNode {
 					var4 = var1.readShortLE();
 					var24 = (var4 >> 4 & 7) + HttpRequestTask.field96;
 					var6 = (var4 & 7) + class323.field3544;
-					var7 = ModeWhere.field4623.field1348;
-					if (var24 >= 0 && var6 >= 0 && var24 < ModeWhere.field4623.field1346 && var6 < ModeWhere.field4623.field1330) {
-						NodeDeque var19 = ModeWhere.field4623.field1349[var7][var24][var6];
+					var7 = ModeWhere.worldView.plane;
+					if (var24 >= 0 && var6 >= 0 && var24 < ModeWhere.worldView.field1346 && var6 < ModeWhere.worldView.field1330) {
+						NodeDeque var19 = ModeWhere.worldView.field1349[var7][var24][var6];
 						if (var19 != null) {
 							for (TileItem var31 = (TileItem)var19.last(); var31 != null; var31 = (TileItem)var19.previous()) {
 								if ((var23 & 32767) == var31.id) {
@@ -445,8 +445,8 @@ public class KitDefinition extends DualNode {
 							}
 						}
 
-						if (var24 >= 0 && var6 >= 0 && var24 < ModeWhere.field4623.field1346 && var6 < ModeWhere.field4623.field1330) {
-							var9 = Client.field753 == -1 ? ModeWhere.field4623.field1348 : Client.field753;
+						if (var24 >= 0 && var6 >= 0 && var24 < ModeWhere.worldView.field1346 && var6 < ModeWhere.worldView.field1330) {
+							var9 = Client.field753 == -1 ? ModeWhere.worldView.plane : Client.field753;
 							class140.method3146(var9, var24, var6, var23, var3);
 						}
 
@@ -465,8 +465,8 @@ public class KitDefinition extends DualNode {
 					var9 = (var8 >> 4 & 7) + HttpRequestTask.field96;
 					var10 = (var8 & 7) + class323.field3544;
 					var27 = var1.readUnsignedShortAdd();
-					if (var9 >= 0 && var10 >= 0 && var9 < ModeWhere.field4623.field1346 && var10 < ModeWhere.field4623.field1330) {
-						var12 = Client.field753 == -1 ? ModeWhere.field4623.field1348 : Client.field753;
+					if (var9 >= 0 && var10 >= 0 && var9 < ModeWhere.worldView.field1346 && var10 < ModeWhere.worldView.field1330) {
+						var12 = Client.field753 == -1 ? ModeWhere.worldView.plane : Client.field753;
 						WorldMapID.addTileItemToGroundItems(var12, var9, var10, var24, var4, var27, var23, var3, var6, var25);
 					}
 
@@ -478,9 +478,9 @@ public class KitDefinition extends DualNode {
 					var6 = var1.readUnsignedByte();
 					var7 = (var6 >> 4 & 7) + HttpRequestTask.field96;
 					var8 = (var6 & 7) + class323.field3544;
-					if (var7 >= 0 && var8 >= 0 && var7 < ModeWhere.field4623.field1346 && var8 < ModeWhere.field4623.field1330) {
-						var9 = Client.field753 == -1 ? ModeWhere.field4623.field1348 : Client.field753;
-						class162.method3417(ModeWhere.field4623, var9, var7, var8, var24, -1, var3, var4, 31, 0, -1);
+					if (var7 >= 0 && var8 >= 0 && var7 < ModeWhere.worldView.field1346 && var8 < ModeWhere.worldView.field1330) {
+						var9 = Client.field753 == -1 ? ModeWhere.worldView.plane : Client.field753;
+						class162.method3417(ModeWhere.worldView, var9, var7, var8, var24, -1, var3, var4, 31, 0, -1);
 					}
 
 				} else if (class319.field3388 == var0) {
@@ -490,12 +490,12 @@ public class KitDefinition extends DualNode {
 					var24 = var1.readUnsignedIntLE();
 					var6 = var1.readUnsignedShortAdd();
 					var7 = var1.readUnsignedShort();
-					if (var3 >= 0 && var4 >= 0 && var3 < ModeWhere.field4623.field1346 && var4 < ModeWhere.field4623.field1330) {
+					if (var3 >= 0 && var4 >= 0 && var3 < ModeWhere.worldView.field1346 && var4 < ModeWhere.worldView.field1330) {
 						var3 = var3 * 128 + 64;
 						var4 = var4 * 128 + 64;
-						var8 = Client.field753 == -1 ? ModeWhere.field4623.field1348 : Client.field753;
-						GraphicsObject var20 = new GraphicsObject(var24, var8, var3, var4, SoundSystem.method856(ModeWhere.field4623, var3, var4, var8) - var6, var7, Client.cycle);
-						ModeWhere.field4623.field1352.addFirst(var20);
+						var8 = Client.field753 == -1 ? ModeWhere.worldView.plane : Client.field753;
+						GraphicsObject var20 = new GraphicsObject(var24, var8, var3, var4, SoundSystem.getTileHeight(ModeWhere.worldView, var3, var4, var8) - var6, var7, Client.cycle);
+						ModeWhere.worldView.graphicObjects.addFirst(var20);
 					}
 
 				} else if (class319.field3385 == var0) {
@@ -504,7 +504,7 @@ public class KitDefinition extends DualNode {
 					var4 = (var23 & 7) + class323.field3544;
 					var24 = var1.method9715();
 					var6 = var1.readUnsignedShortAddLE();
-					var7 = ModeWhere.field4623.field1348;
+					var7 = ModeWhere.worldView.plane;
 					if (var3 >= 0 && var4 >= 0 && var3 < 104 && var4 < 104) {
 						var8 = Client.field753 == -1 ? var7 : Client.field753;
 						Coord.method6523(var8, var3, var4, var6, var24);

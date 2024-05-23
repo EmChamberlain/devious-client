@@ -101,7 +101,7 @@ public class class352 {
 		var0.packetBuffer.writeInt(class133.field1602.hash);
 		var0.packetBuffer.writeIntME(class333.field3643.hash);
 		var0.packetBuffer.writeIntIME(class332.field3638.hash);
-		var0.packetBuffer.writeIntIME(class260.archive2.hash);
+		var0.packetBuffer.writeIntIME(Projection.archive2.hash);
 		var0.packetBuffer.method9712(class327.field3564.hash);
 		var0.packetBuffer.writeIntIME(HttpResponse.field105.hash);
 		var0.packetBuffer.writeInt(class177.archive8.hash);

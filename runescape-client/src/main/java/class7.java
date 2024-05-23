@@ -260,10 +260,10 @@ public class class7 {
 		descriptor = "(Ldt;ZB)V",
 		garbageValue = "-15"
 	)
-	static final void method53(class101 var0, boolean var1) {
-		for (int var2 = 0; var2 < var0.field1344; ++var2) {
-			class103 var3 = var0.field1343[var0.field1345[var2]];
-			if (var3 != null && var3.isVisible() && var3.field1359.isVisible == var1 && var3.field1359.transformIsVisible()) {
+	static final void method53(WorldView var0, boolean var1) {
+		for (int var2 = 0; var2 < var0.npcSize; ++var2) {
+			NPC var3 = var0.NPCS[var0.npcIndexes[var2]];
+			if (var3 != null && var3.isVisible() && var3.npcComposition.isVisible == var1 && var3.npcComposition.transformIsVisible()) {
 				int var4 = var3.x >> 7;
 				int var5 = var3.y >> 7;
 				if (var4 >= 0 && var4 < var0.field1346 && var5 >= 0 && var5 < var0.field1330) {
@@ -275,9 +275,9 @@ public class class7 {
 						var0.field1338[var4][var5] = Client.viewportDrawCount;
 					}
 
-					long var6 = KitDefinition.method3900(0, 0, 1, !var3.field1359.isInteractable, var0.field1345[var2], var0.field1335);
-					var3.field1264 = Client.cycle;
-					var0.field1331.drawEntity(var0.field1348, var3.x, var3.y, SoundSystem.method856(var0, var3.field1208 * 64 - 64 + var3.x, var3.field1208 * 64 - 64 + var3.y, var0.field1348), var3.field1208 * 64 - 64 + 60, var3, var3.field1209, var6, var3.field1207);
+					long var6 = KitDefinition.method3900(0, 0, 1, !var3.npcComposition.isInteractable, var0.npcIndexes[var2], var0.id);
+					var3.playerCycle = Client.cycle;
+					var0.scene.drawEntity(var0.plane, var3.x, var3.y, SoundSystem.getTileHeight(var0, var3.field1208 * 64 - 64 + var3.x, var3.field1208 * 64 - 64 + var3.y, var0.plane), var3.field1208 * 64 - 64 + 60, var3, var3.rotation, var6, var3.isWalking);
 				}
 			}
 		}

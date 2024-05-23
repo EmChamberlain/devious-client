@@ -27,7 +27,9 @@ package net.runelite.mixins;
 import net.runelite.api.DecorativeObject;
 import net.runelite.api.GroundObject;
 import net.runelite.api.Perspective;
+import net.runelite.api.Projection;
 import net.runelite.api.Renderable;
+import net.runelite.api.Scene;
 import net.runelite.api.SceneTileModel;
 import net.runelite.api.SceneTilePaint;
 import net.runelite.api.Tile;
@@ -45,6 +47,7 @@ import net.runelite.rs.api.RSClient;
 import net.runelite.rs.api.RSNode;
 import net.runelite.rs.api.RSNodeDeque;
 import net.runelite.rs.api.RSPlayer;
+import net.runelite.rs.api.RSProjection;
 import net.runelite.rs.api.RSRenderable;
 import net.runelite.rs.api.RSRuneLiteObject;
 import net.runelite.rs.api.RSScene;
@@ -682,7 +685,7 @@ public abstract class RSSceneMixin implements RSScene
 			final int centerX = client.getCenterX();
 			final int centerY = client.getCenterY();
 
-			drawCallbacks.drawSceneModel(0, pitchSin, pitchCos, yawSin, yawCos, -cameraX2, -cameraY2, -cameraZ2,
+			drawCallbacks.drawSceneTileModel(0, pitchSin, pitchCos, yawSin, yawCos, -cameraX2, -cameraY2, -cameraZ2,
 				tile, client.getPlane(), tileX, tileY,
 				zoom, centerX, centerY);
 
@@ -1295,16 +1298,16 @@ public abstract class RSSceneMixin implements RSScene
 	}
 
 	@Inject
-	public static void renderDraw(Renderable renderable, int orientation, int pitchSin, int pitchCos, int yawSin, int yawCos, int x, int y, int z, long hash)
+	public void renderDraw(RSProjection projection, RSRenderable renderable, int orientation, int pitchSin, int pitchCos, int yawSin, int yawCos, int x, int y, int z, long hash)
 	{
 		DrawCallbacks drawCallbacks = client.getDrawCallbacks();
 		if (drawCallbacks != null)
 		{
-			drawCallbacks.draw(renderable, orientation, pitchSin, pitchCos, yawSin, yawCos, x, y, z, hash);
+			drawCallbacks.draw(projection, this, renderable, orientation, x, y, z, hash);
 		}
 		else
 		{
-			renderable.draw(orientation, pitchSin, pitchCos, yawSin, yawCos, x, y, z, hash);
+			projection.draw(renderable, orientation, x, y, z, hash);
 		}
 	}
 

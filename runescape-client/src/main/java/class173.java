@@ -90,17 +90,17 @@ public class class173 extends class188 {
 				int var8;
 				int var10;
 				int var16;
-				for (var8 = 0; var8 < Client.field775; ++var8) {
+				for (var8 = 0; var8 < Client.mapIconCount; ++var8) {
 					var16 = Client.mapIconXs[var8] * 4 + 2 - Interpreter.field899.vmethod8779() / 32;
-					var10 = Client.field774[var8] * 4 + 2 - Interpreter.field899.vmethod8773() / 32;
-					class94.drawSpriteOnMinimap(var1, var2, var16, var10, Client.field617[var8], var4);
+					var10 = Client.mapIconYs[var8] * 4 + 2 - Interpreter.field899.vmethod8773() / 32;
+					class94.drawSpriteOnMinimap(var1, var2, var16, var10, Client.mapIcons[var8], var4);
 				}
 
 				int var11;
 				int var12;
 				for (var8 = 0; var8 < 104; ++var8) {
 					for (var16 = 0; var16 < 104; ++var16) {
-						NodeDeque var14 = class358.scene.field1349[class358.scene.field1348][var8][var16];
+						NodeDeque var14 = class358.topLevelWorldView.field1349[class358.topLevelWorldView.plane][var8][var16];
 						if (var14 != null) {
 							var11 = var8 * 4 + 2 - Interpreter.field899.vmethod8779() / 32;
 							var12 = var16 * 4 + 2 - Interpreter.field899.vmethod8773() / 32;
@@ -109,10 +109,10 @@ public class class173 extends class188 {
 					}
 				}
 
-				for (var8 = 0; var8 < class358.scene.field1344; ++var8) {
-					class103 var9 = class358.scene.field1343[class358.scene.field1345[var8]];
+				for (var8 = 0; var8 < class358.topLevelWorldView.npcSize; ++var8) {
+					NPC var9 = class358.topLevelWorldView.NPCS[class358.topLevelWorldView.npcIndexes[var8]];
 					if (var9 != null && var9.isVisible()) {
-						NPCComposition var18 = var9.field1359;
+						NPCComposition var18 = var9.npcComposition;
 						if (var18 != null && var18.transforms != null) {
 							var18 = var18.transform();
 						}
@@ -125,11 +125,11 @@ public class class173 extends class188 {
 					}
 				}
 
-				var8 = class358.scene.field1336.field1415;
-				int[] var17 = class358.scene.field1336.field1416;
+				var8 = class358.topLevelWorldView.playerUpdateManager.playerSize;
+				int[] var17 = class358.topLevelWorldView.playerUpdateManager.playerIndexes;
 
 				for (var10 = 0; var10 < var8; ++var10) {
-					Player var15 = class358.scene.field1341[var17[var10]];
+					Player var15 = class358.topLevelWorldView.players[var17[var10]];
 					if (var15 != null && var15.isVisible() && !var15.field1142 && var15 != class17.localPlayer) {
 						var12 = var15.x / 32 - Interpreter.field899.vmethod8779() / 32;
 						int var13 = var15.y / 32 - Interpreter.field899.vmethod8773() / 32;
@@ -148,8 +148,8 @@ public class class173 extends class188 {
 				}
 
 				if (Client.hintArrowType != 0 && Client.cycle % 20 < 10) {
-					if (Client.hintArrowType == 1 && Client.field610 >= 0 && Client.field610 < class358.scene.field1343.length) {
-						class103 var19 = class358.scene.field1343[Client.field610];
+					if (Client.hintArrowType == 1 && Client.hintArrowNpcIndex >= 0 && Client.hintArrowNpcIndex < class358.topLevelWorldView.NPCS.length) {
+						NPC var19 = class358.topLevelWorldView.NPCS[Client.hintArrowNpcIndex];
 						if (var19 != null) {
 							var11 = var19.x / 32 - Interpreter.field899.vmethod8779() / 32;
 							var12 = var19.y / 32 - Interpreter.field899.vmethod8773() / 32;
@@ -158,13 +158,13 @@ public class class173 extends class188 {
 					}
 
 					if (Client.hintArrowType == 2) {
-						var10 = Client.field769 * 4 - class358.scene.field1337 * 4 + 2 - Interpreter.field899.vmethod8779() / 32;
-						var11 = Client.field554 * 4 - class358.scene.field1333 * 4 + 2 - Interpreter.field899.vmethod8773() / 32;
+						var10 = Client.field769 * 4 - class358.topLevelWorldView.baseX * 4 + 2 - Interpreter.field899.vmethod8779() / 32;
+						var11 = Client.hintArrowY * 4 - class358.topLevelWorldView.baseY * 4 + 2 - Interpreter.field899.vmethod8773() / 32;
 						SecureRandomFuture.worldToMinimap(var1, var2, var10, var11, Varcs.mapDotSprites[1], var4);
 					}
 
-					if (Client.hintArrowType == 10 && Client.field817 >= 0 && Client.field817 < class358.scene.field1341.length) {
-						Player var20 = class358.scene.field1341[Client.field817];
+					if (Client.hintArrowType == 10 && Client.field817 >= 0 && Client.field817 < class358.topLevelWorldView.players.length) {
+						Player var20 = class358.topLevelWorldView.players[Client.field817];
 						if (var20 != null) {
 							var11 = var20.x / 32 - Interpreter.field899.vmethod8779() / 32;
 							var12 = var20.y / 32 - Interpreter.field899.vmethod8773() / 32;

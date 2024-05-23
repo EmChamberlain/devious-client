@@ -1,9 +1,11 @@
 import net.runelite.mapping.Export;
+import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("kl")
-public abstract class class260 {
+@Implements("Projection")
+public abstract class Projection {
 	@ObfuscatedName("eq")
 	@ObfuscatedSignature(
 		descriptor = "Lot;"
@@ -11,14 +13,15 @@ public abstract class class260 {
 	@Export("archive2")
 	static Archive archive2;
 
-	class260() {
+	Projection() {
 	}
 
 	@ObfuscatedName("ak")
 	@ObfuscatedSignature(
 		descriptor = "(Lju;IIIIJ)V"
 	)
-	abstract void vmethod5146(Renderable var1, int var2, int var3, int var4, int var5, long var6);
+	@Export("draw")
+	abstract void draw(Renderable var1, int var2, int var3, int var4, int var5, long var6);
 
 	@ObfuscatedName("al")
 	@ObfuscatedSignature(
@@ -62,9 +65,9 @@ public abstract class class260 {
 				Rasterizer3D.clips.field2973 = true;
 			}
 
-			if (var1.field2734 && Scene.containsBounds(var1.field2738, var1.field2739, var22, var24, var20, var21, var23, var19)) {
-				var1.field2740 = var3;
-				var1.field2741 = var4;
+			if (var1.checkClick && Scene.containsBounds(var1.Scene_selectedScreenX, var1.Scene_selectedScreenY, var22, var24, var20, var21, var23, var19)) {
+				var1.baseX = var3;
+				var1.baseY = var4;
 			}
 
 			if (var2.texture == -1) {
@@ -90,9 +93,9 @@ public abstract class class260 {
 				Rasterizer3D.clips.field2973 = true;
 			}
 
-			if (var1.field2734 && Scene.containsBounds(var1.field2738, var1.field2739, var18, var20, var24, var17, var19, var23)) {
-				var1.field2740 = var3;
-				var1.field2741 = var4;
+			if (var1.checkClick && Scene.containsBounds(var1.Scene_selectedScreenX, var1.Scene_selectedScreenY, var18, var20, var24, var17, var19, var23)) {
+				var1.baseX = var3;
+				var1.baseY = var4;
 			}
 
 			if (var2.texture == -1) {
@@ -138,9 +141,9 @@ public abstract class class260 {
 					Rasterizer3D.clips.field2973 = true;
 				}
 
-				if (var1.field2734 && Scene.containsBounds(var1.field2738, var1.field2739, var13, var14, var15, var10, var11, var12)) {
-					var1.field2740 = var3;
-					var1.field2741 = var4;
+				if (var1.checkClick && Scene.containsBounds(var1.Scene_selectedScreenX, var1.Scene_selectedScreenY, var13, var14, var15, var10, var11, var12)) {
+					var1.baseX = var3;
+					var1.baseY = var4;
 				}
 
 				if (var2.triangleTextureId != null && var2.triangleTextureId[var6] != -1) {

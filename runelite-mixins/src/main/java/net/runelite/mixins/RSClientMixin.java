@@ -1580,11 +1580,7 @@ public abstract class RSClientMixin implements RSClient
 	{
 		int sceneX = getDestinationX();
 		int sceneY = getDestinationY();
-		if (sceneX != 0 && sceneY != 0)
-		{
-			return LocalPoint.fromScene(sceneX, sceneY);
-		}
-		return null;
+		return sceneX != 0 && sceneY != 0 ? LocalPoint.fromScene(sceneX, sceneY, client.getTopLevelWorldView().getScene()) : null;
 	}
 
 	@Inject

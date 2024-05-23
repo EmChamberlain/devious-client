@@ -41,6 +41,6 @@ public class class349 {
 		garbageValue = "312360827"
 	)
 	static final void method6551(int var0, int var1, int var2) {
-		class166.method3440(ModeWhere.field4623, var0, var1, var2);
+		class166.method3440(ModeWhere.worldView, var0, var1, var2);
 	}
 }

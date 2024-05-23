@@ -1,30 +1,36 @@
 import net.runelite.mapping.Export;
+import net.runelite.mapping.Implements;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("dt")
-public class class101 {
+@Implements("WorldView")
+public class WorldView {
 	@ObfuscatedName("ak")
 	@ObfuscatedGetter(
 		intValue = -1413982259
 	)
-	int field1335;
+	@Export("id")
+	int id;
 	@ObfuscatedName("al")
 	@ObfuscatedSignature(
 		descriptor = "Ljy;"
 	)
-	public Scene field1331;
+	@Export("scene")
+	public Scene scene;
 	@ObfuscatedName("aj")
 	@ObfuscatedSignature(
 		descriptor = "[Lir;"
 	)
-	CollisionMap[] field1332;
+	@Export("collisionMaps")
+	CollisionMap[] collisionMaps;
 	@ObfuscatedName("az")
 	@ObfuscatedGetter(
 		intValue = 1305902891
 	)
-	public int field1348;
+	@Export("plane")
+	public int plane;
 	@ObfuscatedName("af")
 	@ObfuscatedGetter(
 		intValue = -1392129955
@@ -39,52 +45,64 @@ public class class101 {
 	@ObfuscatedGetter(
 		intValue = -1010690991
 	)
-	int field1337;
+	@Export("baseX")
+	int baseX;
 	@ObfuscatedName("ab")
 	@ObfuscatedGetter(
 		intValue = -854149623
 	)
-	int field1333;
+	@Export("baseY")
+	int baseY;
 	@ObfuscatedName("ac")
 	int[][] field1338;
 	@ObfuscatedName("ao")
-	int[][][] field1339;
+	@Export("tileHeights")
+	int[][][] tileHeights;
 	@ObfuscatedName("ah")
-	byte[][][] field1340;
+	@Export("tileSettings")
+	byte[][][] tileSettings;
 	@ObfuscatedName("av")
 	@ObfuscatedSignature(
 		descriptor = "[Lde;"
 	)
-	Player[] field1341;
+	@Export("players")
+	Player[] players;
 	@ObfuscatedName("aq")
 	@ObfuscatedSignature(
 		descriptor = "Led;"
 	)
-	class110 field1336;
+	@Export("playerUpdateManager")
+	PlayerUpdateManager playerUpdateManager;
 	@ObfuscatedName("ap")
 	@ObfuscatedSignature(
 		descriptor = "[Ldv;"
 	)
-	class103[] field1343;
+	@Export("npcs")
+	NPC[] NPCS;
 	@ObfuscatedName("ae")
 	@ObfuscatedGetter(
 		intValue = 1962706385
 	)
-	int field1344;
+	@Export("npcSize")
+	int npcSize;
 	@ObfuscatedName("ax")
-	int[] field1345;
+	@Export("npcIndexes")
+	int[] npcIndexes;
 	@ObfuscatedName("ay")
 	@ObfuscatedSignature(
 		descriptor = "[Lst;"
 	)
-	class475[] field1347;
+	@Export("worldEntities")
+	WorldEntity[] worldEntities;
 	@ObfuscatedName("au")
 	@ObfuscatedGetter(
 		intValue = -1011567785
 	)
-	int field1334;
+	@Export("worldEntitySize")
+	int worldEntitySize;
 	@ObfuscatedName("as")
-	int[] field1350;
+	@Export("worldEntityIndexes")
+	int[] worldEntityIndexes;
 	@ObfuscatedName("aw")
 	@ObfuscatedSignature(
 		descriptor = "[[[Lpk;"
@@ -99,37 +117,39 @@ public class class101 {
 	@ObfuscatedSignature(
 		descriptor = "Lpk;"
 	)
-	NodeDeque field1351;
+	@Export("projectiles")
+	NodeDeque projectiles;
 	@ObfuscatedName("an")
 	@ObfuscatedSignature(
 		descriptor = "Lpk;"
 	)
-	NodeDeque field1352;
+	@Export("graphicObjects")
+	NodeDeque graphicObjects;
 
-	public class101(int var1, int var2, int var3, int var4) {
-		this.field1332 = new CollisionMap[4];
-		this.field1341 = new Player[2048];
-		this.field1336 = new class110(this);
-		this.field1343 = new class103[65536];
-		this.field1345 = new int[65536];
-		this.field1347 = new class475[2048];
-		this.field1350 = new int[2048];
+	public WorldView(int var1, int var2, int var3, int var4) {
+		this.collisionMaps = new CollisionMap[4];
+		this.players = new Player[2048];
+		this.playerUpdateManager = new PlayerUpdateManager(this);
+		this.NPCS = new NPC[65536];
+		this.npcIndexes = new int[65536];
+		this.worldEntities = new WorldEntity[2048];
+		this.worldEntityIndexes = new int[2048];
 		this.field1342 = new NodeDeque();
-		this.field1351 = new NodeDeque();
-		this.field1352 = new NodeDeque();
-		this.field1335 = var1;
+		this.projectiles = new NodeDeque();
+		this.graphicObjects = new NodeDeque();
+		this.id = var1;
 		this.field1346 = var2;
 		this.field1330 = var3;
 		this.field1349 = new NodeDeque[4][var2][var3];
-		this.field1339 = new int[4][var2 + 1][var3 + 1];
-		this.field1340 = new byte[4][var2][var3];
+		this.tileHeights = new int[4][var2 + 1][var3 + 1];
+		this.tileSettings = new byte[4][var2][var3];
 		this.field1338 = new int[var2][var3];
 
 		for (int var5 = 0; var5 < 4; ++var5) {
-			this.field1332[var5] = new CollisionMap(var2, var3);
+			this.collisionMaps[var5] = new CollisionMap(var2, var3);
 		}
 
-		this.field1331 = new Scene(var1, 4, var2, var3, var4, this.field1339);
+		this.scene = new Scene(var1, 4, var2, var3, var4, this.tileHeights);
 	}
 
 	@ObfuscatedName("ak")
@@ -138,7 +158,7 @@ public class class101 {
 		garbageValue = "-799077622"
 	)
 	boolean method2634() {
-		return this.field1335 == -1;
+		return this.id == -1;
 	}
 
 	@ObfuscatedName("al")
@@ -148,24 +168,24 @@ public class class101 {
 	)
 	@Export("clear")
 	void clear() {
-		this.field1344 = 0;
-		this.field1334 = 0;
+		this.npcSize = 0;
+		this.worldEntitySize = 0;
 
 		int var1;
 		for (var1 = 0; var1 < 2048; ++var1) {
-			this.field1341[var1] = null;
+			this.players[var1] = null;
 		}
 
 		for (var1 = 0; var1 < 65536; ++var1) {
-			this.field1343[var1] = null;
+			this.NPCS[var1] = null;
 		}
 
 		for (var1 = 0; var1 < 2048; ++var1) {
-			this.field1347[var1] = null;
+			this.worldEntities[var1] = null;
 		}
 
-		this.field1351.clear();
-		this.field1352.clear();
+		this.projectiles.clear();
+		this.graphicObjects.clear();
 		this.field1342 = new NodeDeque();
 
 		for (var1 = 0; var1 < 4; ++var1) {
@@ -176,10 +196,10 @@ public class class101 {
 			}
 		}
 
-		this.field1331.clearTempGameObjects();
+		this.scene.clearTempGameObjects();
 
 		for (var1 = 0; var1 < 4; ++var1) {
-			this.field1332[var1].clear();
+			this.collisionMaps[var1].clear();
 		}
 
 	}
@@ -192,14 +212,14 @@ public class class101 {
 	void method2640() {
 		int var1;
 		for (var1 = 0; var1 < 2048; ++var1) {
-			this.field1341[var1] = null;
+			this.players[var1] = null;
 		}
 
-		for (var1 = 0; var1 < this.field1343.length; ++var1) {
-			class103 var2 = this.field1343[var1];
+		for (var1 = 0; var1 < this.NPCS.length; ++var1) {
+			NPC var2 = this.NPCS[var1];
 			if (var2 != null) {
-				var2.field1219 = -1;
-				var2.field1240 = false;
+				var2.targetIndex = -1;
+				var2.false0 = false;
 			}
 		}
 

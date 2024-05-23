@@ -137,13 +137,13 @@ public class ChatChannel {
 		garbageValue = "-1022757602"
 	)
 	static void method2226(int var0, String var1) {
-		int var2 = class17.localPlayer.field1134.field1336.field1415;
-		int[] var3 = class17.localPlayer.field1134.field1336.field1416;
+		int var2 = class17.localPlayer.field1134.playerUpdateManager.playerSize;
+		int[] var3 = class17.localPlayer.field1134.playerUpdateManager.playerIndexes;
 		boolean var4 = false;
 		Username var5 = new Username(var1, class236.loginType);
 
 		for (int var6 = 0; var6 < var2; ++var6) {
-			Player var7 = class17.localPlayer.field1134.field1341[var3[var6]];
+			Player var7 = class17.localPlayer.field1134.players[var3[var6]];
 			if (var7 != null && var7 != class17.localPlayer && var7.username != null && var7.username.equals(var5)) {
 				PacketBufferNode var8;
 				if (var0 == 1) {

@@ -16,7 +16,7 @@ public class DynamicObject extends Renderable {
 	@ObfuscatedSignature(
 		descriptor = "Ldt;"
 	)
-	class101 field1036;
+	WorldView field1036;
 	@ObfuscatedName("al")
 	@ObfuscatedGetter(
 		intValue = -221657491
@@ -72,7 +72,7 @@ public class DynamicObject extends Renderable {
 	@ObfuscatedSignature(
 		descriptor = "(Ldt;IIIIIIIZLju;)V"
 	)
-	DynamicObject(class101 var1, int var2, int var3, int var4, int var5, int var6, int var7, int var8, boolean var9, Renderable var10) {
+	DynamicObject(WorldView var1, int var2, int var3, int var4, int var5, int var6, int var7, int var8, boolean var9, Renderable var10) {
 		this.field1036 = var1;
 		this.id = var2;
 		this.field1030 = var3;
@@ -172,7 +172,7 @@ public class DynamicObject extends Renderable {
 			int var5 = (var2 + 1 >> 1) + this.field1031;
 			int var6 = (var3 >> 1) + this.field1034;
 			int var7 = (var3 + 1 >> 1) + this.field1034;
-			int[][] var8 = this.field1036.field1339[this.plane];
+			int[][] var8 = this.field1036.tileHeights[this.plane];
 			int var9 = var8[var4][var7] + var8[var5][var6] + var8[var4][var6] + var8[var5][var7] >> 2;
 			int var10 = (this.field1031 << 7) + (var2 << 6);
 			int var11 = (this.field1034 << 7) + (var3 << 6);

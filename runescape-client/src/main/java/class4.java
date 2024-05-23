@@ -188,24 +188,24 @@ public final class class4 {
 		descriptor = "(Ldv;B)V",
 		garbageValue = "-60"
 	)
-	static void method15(class103 var0) {
-		var0.field1208 = var0.field1359.size;
-		var0.field1238 = var0.field1359.rotation;
-		var0.field1213 = var0.field1359.walkSequence;
-		var0.field1222 = var0.field1359.walkBackSequence;
-		var0.field1205 = var0.field1359.walkLeftSequence;
-		var0.field1216 = var0.field1359.walkRightSequence;
-		var0.idleSequence = var0.field1359.idleSequence;
-		var0.field1241 = var0.field1359.turnLeftSequence;
-		var0.field1212 = var0.field1359.turnRightSequence;
-		var0.field1217 = var0.field1359.field2130;
-		var0.field1215 = var0.field1359.field2131;
-		var0.field1225 = var0.field1359.field2161;
-		var0.field1220 = var0.field1359.field2133;
-		var0.field1273 = var0.field1359.field2134;
-		var0.field1206 = var0.field1359.field2135;
-		var0.field1281 = var0.field1359.field2136;
-		var0.field1228 = var0.field1359.field2124;
+	static void method15(NPC var0) {
+		var0.field1208 = var0.npcComposition.size;
+		var0.field1238 = var0.npcComposition.rotation;
+		var0.walkSequence = var0.npcComposition.walkSequence;
+		var0.walkBackSequence = var0.npcComposition.walkBackSequence;
+		var0.walkLeftSequence = var0.npcComposition.walkLeftSequence;
+		var0.walkRightSequence = var0.npcComposition.walkRightSequence;
+		var0.idleSequence = var0.npcComposition.idleSequence;
+		var0.turnLeftSequence = var0.npcComposition.turnLeftSequence;
+		var0.turnRightSequence = var0.npcComposition.turnRightSequence;
+		var0.runSequence = var0.npcComposition.field2130;
+		var0.field1215 = var0.npcComposition.field2131;
+		var0.field1225 = var0.npcComposition.field2161;
+		var0.field1220 = var0.npcComposition.field2133;
+		var0.field1273 = var0.npcComposition.field2134;
+		var0.field1206 = var0.npcComposition.field2135;
+		var0.field1281 = var0.npcComposition.field2136;
+		var0.field1228 = var0.npcComposition.field2124;
 	}
 
 	@ObfuscatedName("mp")
@@ -213,8 +213,8 @@ public final class class4 {
 		descriptor = "(Ldv;IIIII)V",
 		garbageValue = "-384431621"
 	)
-	static final void method16(class103 var0, int var1, int var2, int var3, int var4) {
-		NPCComposition var5 = var0.field1359;
+	static final void method16(NPC var0, int var1, int var2, int var3, int var4) {
+		NPCComposition var5 = var0.npcComposition;
 		if (Client.menuOptionsCount < 400) {
 			if (var5.transforms != null) {
 				var5 = var5.transform();
@@ -279,7 +279,7 @@ public final class class4 {
 									if (var0.method2693(var9) && var8[var9] != null && var8[var9].equalsIgnoreCase("Attack")) {
 										short var11 = 0;
 										if (Client.npcAttackOption != AttackOption.AttackOption_hidden) {
-											if (AttackOption.field1384 == Client.npcAttackOption || AttackOption.AttackOption_dependsOnCombatLevels == Client.npcAttackOption && var5.combatLevel > class17.localPlayer.field1147) {
+											if (AttackOption.AttackOption_alwaysRightClick == Client.npcAttackOption || AttackOption.AttackOption_dependsOnCombatLevels == Client.npcAttackOption && var5.combatLevel > class17.localPlayer.field1147) {
 												var11 = 2000;
 											}
 

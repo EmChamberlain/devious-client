@@ -1772,6 +1772,10 @@ public interface RSClient extends RSGameEngine, Client
 	@Override
 	boolean isMembersWorld();
 
+	@Import("topLevelWorldView")
+	@Override
+	RSWorldView getTopLevelWorldView();
+
 	/**
 	 * User id & hash
 	 */

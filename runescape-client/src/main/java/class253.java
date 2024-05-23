@@ -4,7 +4,8 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("jk")
-public class class253 extends class260 {
+public class class253 extends Projection
+{
 	@ObfuscatedName("az")
 	@Export("Tiles_shapes")
 	static byte[][][] Tiles_shapes;
@@ -33,7 +34,7 @@ public class class253 extends class260 {
 	@ObfuscatedSignature(
 		descriptor = "(Lju;IIIIJ)V"
 	)
-	void vmethod5146(Renderable var1, int var2, int var3, int var4, int var5, long var6) {
+	void draw(Renderable var1, int var2, int var3, int var4, int var5, long var6) {
 		var1.vmethod5205(var2, this.field2790, var3, var4, var5, var6);
 	}
 
